@@ -10,11 +10,15 @@ class CreateProfileLoginStandardsTable extends Migration {
 		Schema::create('profile_login_standards', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('profile_id')->unsigned();
+
 			$table->string('username');
 			$table->string('password');
 			$table->string('reset_key');
 			$table->boolean('force_password_change');
-			$table->timestamps();
+
+            $table->integer('creator')->index();
+            $table->timestamps();
+            $table->softDeletes();
 		});
 	}
 

@@ -8,6 +8,7 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
+
 		Schema::table('profiles', function(Blueprint $table) {
 			$table->foreign('userverse_id')->references('id')->on('userverses')
 						->onDelete('restrict')

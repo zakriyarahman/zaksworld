@@ -9,11 +9,14 @@ class CreateUserRolesTable extends Migration {
 	{
 		Schema::create('user_roles', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name');
+
+            $table->string('name');
 			$table->string('description')->nullable();
-			$table->softDeletes();
-			$table->timestamps();
-		});
+
+            $table->integer('creator')->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
 	}
 
 	public function down()

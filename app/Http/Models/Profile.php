@@ -2,17 +2,36 @@
 
 namespace App\Http\Modals;
 
+# Framework Library
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Profile extends Model {
+# Application Library
+use App\Http\Modals\Traits\Times\UnixTimeTraits;
+use App\Http\Modals\Traits\Times\AllTimeStamps;
 
+class Profile extends Model
+{
+
+    /**
+     * Models uses soft deletes, timestamps and unix times
+     */
+    use SoftDeletes, AllTimeStamps, UnixTimeTraits;
+
+
+    /**
+     * Model has profiles table
+     *
+     * @var string
+     */
 	protected $table = 'profiles';
-	public $timestamps = true;
 
-	use SoftDeletes;
 
-	protected $dates = ['deleted_at'];
+    /**
+     * Mass Assignment Rules
+     *
+     * @var array
+     */
 	protected $fillable = array('status');
 
 }

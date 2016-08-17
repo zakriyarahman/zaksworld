@@ -9,13 +9,16 @@ class CreateUserversesTable extends Migration {
 	{
 		Schema::create('userverses', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('firstname');
+
+            $table->string('firstname');
 			$table->string('middlename')->nullable();
 			$table->string('lastname');
 			$table->string('suffix')->nullable();
-			$table->softDeletes();
-			$table->timestamps();
-		});
+
+            $table->integer('creator')->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
 	}
 
 	public function down()

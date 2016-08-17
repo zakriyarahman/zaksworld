@@ -9,12 +9,15 @@ class CreateProfilesTable extends Migration {
 	{
 		Schema::create('profiles', function(Blueprint $table) {
 			$table->increments('id');
+
 			$table->integer('userverse_id')->unsigned();
 			$table->integer('role_id')->unsigned();
 			$table->boolean('status')->default(true);
-			$table->softDeletes();
-			$table->timestamps();
-		});
+
+            $table->integer('creator')->index();
+            $table->timestamps();
+            $table->softDeletes();
+        });
 	}
 
 	public function down()
